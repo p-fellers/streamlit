@@ -112,6 +112,7 @@ with col2:
             ax.plot((value1, value1), (-.02, norm.pdf(value1, loc=meanmu, scale=stsigma)+.1), scaley = False, color='tab:orange')
             ax.plot((value2, value2), (-.02, norm.pdf(value2, loc=meanmu, scale=stsigma)+.1), scaley = False, color='tab:orange')
     else:
+        fig, ax = plt.subplots()
         x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
         ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), color='tab:blue')
         ax.set(xlabel='X', ylabel='Density')
