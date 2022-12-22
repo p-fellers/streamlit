@@ -74,10 +74,10 @@ with col1:
 with col2:
     
     fig, ax = plt.subplots()
-        x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
-        ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), alpha=0.5)
-        ax.set(xlabel='X', ylabel='Density')
-        title1=('normal(%0.2f, %0.2f)' %(meanmu, stsigma))
+    x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
+    ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), alpha=0.5)
+    ax.set(xlabel='X', ylabel='Density')
+    title1=('normal(%0.2f, %0.2f)' %(meanmu, stsigma))
 
     st.pyplot(fig)
     
