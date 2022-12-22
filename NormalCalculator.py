@@ -122,4 +122,4 @@ with col2:
         plt.ylim(bottom=0) 
         text=""
     st.pyplot(fig)
-    st.write(text)
+    st.markdown(text, align_text='center')
