@@ -122,4 +122,5 @@ with col2:
         plt.ylim(bottom=0) 
         text=""
     st.pyplot(fig)
-    st.markdown(text, align_text='center')
+    st.markdown("<h1 style='text-align: center'>text</h1>")#, unsafe_allow_html=True)
+
