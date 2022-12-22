@@ -78,6 +78,6 @@ with col2:
     ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), alpha=0.5)
     ax.set(xlabel='X', ylabel='Density')
     title1=('normal(%0.2f, %0.2f)' %(meanmu, stsigma))
-
+    ax.title.set_text(title1)
     st.pyplot(fig)
     
