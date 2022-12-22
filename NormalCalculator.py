@@ -138,7 +138,7 @@ with col2:
         title1=('normal(%0.2f, %0.2f)' %(meanmu, stsigma))
         plt.ylim(bottom=0) 
         ax.title.set_text(title1)
-        if tail = "lower tail":
+        if tail == "lower tail":
             valresult=norm.ppf(prob, meanmu, stsigma)
             x2 = np.linspace(norm.ppf(0.0001, meanmu, stsigma), valresult, 100)
             y2 = norm.pdf(x=x2, loc=meanmu, scale=stsigma)
@@ -146,7 +146,7 @@ with col2:
             ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
             ax.plot((valresult, valresult), (-.02, norm.pdf(valresult, loc=meanmu, scale=stsigma)), scaley = False, color='tab:orange')
             text="P(X < %0.2f) = %0.2f" %(valresult, prob)
-        elif tail = "upper tail":
+        elif tail == "upper tail":
             valresult=norm.ppf((1-prob), meanmu, stsigma)
             x2 = np.linspace(valresult, norm.ppf(0.9999, meanmu, stsigma), 100)
             y2 = norm.pdf(x=x2, loc=meanmu, scale=stsigma)
