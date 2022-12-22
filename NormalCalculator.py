@@ -77,6 +77,24 @@ with col1:
                 step=0.01,
                 key=23
             )
+   
+    if calculate == "Value given probability":
+        tail = st.selectbox(
+            "Location",
+            [
+                "lower tail",
+                "upper tail",
+                "middle"
+            ]
+        )
+        prob = st.number_input(
+                "prob",
+                min_value=0.00,
+                max_value=1.00,
+                value=0.50,
+                step=0.01,
+                key = 3.1
+        )
 
 with col2:
     if calculate == "Probability given value":
