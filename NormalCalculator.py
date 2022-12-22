@@ -113,6 +113,7 @@ with col2:
             ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
             ax.plot((value1, value1), (-.02, norm.pdf(value1, loc=meanmu, scale=stsigma)+.1), scaley = False, color='tab:orange')
             ax.plot((value2, value2), (-.02, norm.pdf(value2, loc=meanmu, scale=stsigma)+.1), scaley = False, color='tab:orange')
+        st.pyplot(fig)
     else:
         fig, ax = plt.subplots()
         x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
