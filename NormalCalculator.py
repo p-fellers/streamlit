@@ -64,7 +64,7 @@ with col1:
             )
             
         else:
-            value = st.number_input(
+            value1 = st.number_input(
                 "value",
                 value=0.00,
                 step=0.01,
@@ -81,11 +81,11 @@ with col2:
             title1=('normal(%0.2f, %0.2f)' %(meanmu, stsigma))
             ax.title.set_text(title1)
             st.pyplot(fig)        
-            x2 = np.linspace(norm.ppf(0.0001, meanmu, stsigma), value, 100)
+            x2 = np.linspace(norm.ppf(0.0001, meanmu, stsigma), value1, 100)
             y2 = norm.pdf(x=x2, loc=meanmu, scale=stsigma)
             ax.plot(x2, y2, color='tab:blue')
             ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
-            ax.plot((value, value), (-.02, norm.pdf(value, loc=meanmu, scale=stsigma)+.1), scaley = False, color='tab:orange')
+            ax.plot((value1, value1), (-.02, norm.pdf(value1, loc=meanmu, scale=stsigma)+.1), scaley = False, color='tab:orange')
         elif probability == "P( X > value)":
             x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
             ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), color='tab:blue')
@@ -93,11 +93,11 @@ with col2:
             title1=('normal(%0.2f, %0.2f)' %(meanmu, stsigma))
             ax.title.set_text(title1)
             st.pyplot(fig)        
-            x2 = np.linspace(value, norm.ppf(0.9999, meanmu, stsigma), 100)
+            x2 = np.linspace(value1, norm.ppf(0.9999, meanmu, stsigma), 100)
             y2 = norm.pdf(x=x2, loc=meanmu, scale=stsigma)
             ax.plot(x2, y2, color='tab:blue')
             ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
-            ax.plot((value, value), (-.02, norm.pdf(value, loc=meanmu, scale=stsigma)+.1), scaley = False, color='tab:orange')
+            ax.plot((value1, value1), (-.02, norm.pdf(value1, loc=meanmu, scale=stsigma)+.1), scaley = False, color='tab:orange')
         else:
             x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
             ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), color='tab:blue')
