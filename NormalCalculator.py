@@ -60,7 +60,7 @@ with col1:
                 "value2",
                 value=0.00,
                 step=0.01,
-                key=21
+                key=22
             )
             
         else:
@@ -68,13 +68,13 @@ with col1:
                 "value",
                 value=0.00,
                 step=0.01,
-                key=21
+                key=23
             )
 
 with col2:
     if check:
         fig, ax = plt.subplots()
-        if probability == "P( X < value)":
+        if probability == "P(X < value)":
             x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
             ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), color='tab:blue')
             ax.set(xlabel='X', ylabel='Density')
@@ -86,7 +86,7 @@ with col2:
             ax.plot(x2, y2, color='tab:blue')
             ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
             ax.plot((value1, value1), (-.02, norm.pdf(value1, loc=meanmu, scale=stsigma)+.1), scaley = False, color='tab:orange')
-        elif probability == "P( X > value)":
+        elif probability == "P(X > value)":
             x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
             ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), color='tab:blue')
             ax.set(xlabel='X', ylabel='Density')
