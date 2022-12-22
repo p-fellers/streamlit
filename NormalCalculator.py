@@ -112,7 +112,7 @@ with col2:
             ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
             ax.plot((value1, value1), (-.02, norm.pdf(value1, loc=meanmu, scale=stsigma)), scaley = False, color='tab:orange')
             probcalc = norm.cdf(value1,loc=meanmu, scale=stsigma)
-            text="P(X < %0.2f) = %0.2f" %(value1, probcalc) 
+            text=st.markdown("P(X $\leq$ %0.2f) = %0.2f" %(value1, probcalc)) 
         elif probability == "P(X > value)":     
             x2 = np.linspace(value1, norm.ppf(0.9999, meanmu, stsigma), 100)
             y2 = norm.pdf(x=x2, loc=meanmu, scale=stsigma)
