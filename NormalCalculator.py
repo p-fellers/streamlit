@@ -38,7 +38,6 @@ with col1:
         key=12    
     )
 
-    check = st.checkbox("Calculate Probability")
     calculate = st.selectbox(
         "Calculate",
         [
@@ -82,37 +81,24 @@ with col1:
 with col2:
     if calculate == "Probability given value":
         fig, ax = plt.subplots()
-        if probability == "P(X < value)":
-            x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
-            ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), color='tab:blue')
-            ax.set(xlabel='X', ylabel='Density')
-            title1=('normal(%0.2f, %0.2f)' %(meanmu, stsigma))
-            ax.title.set_text(title1)
-            st.pyplot(fig)        
+        x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
+        ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), color='tab:blue')
+        ax.set(xlabel='X', ylabel='Density')
+        title1=('normal(%0.2f, %0.2f)' %(meanmu, stsigma))
+        ax.title.set_text(title1) 
+        if probability == "P(X < value)":    
             x2 = np.linspace(norm.ppf(0.0001, meanmu, stsigma), value1, 100)
             y2 = norm.pdf(x=x2, loc=meanmu, scale=stsigma)
             ax.plot(x2, y2, color='tab:blue')
             ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
             ax.plot((value1, value1), (-.02, norm.pdf(value1, loc=meanmu, scale=stsigma)+.1), scaley = False, color='tab:orange')
-        elif probability == "P(X > value)":
-            x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
-            ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), color='tab:blue')
-            ax.set(xlabel='X', ylabel='Density')
-            title1=('normal(%0.2f, %0.2f)' %(meanmu, stsigma))
-            ax.title.set_text(title1)
-            st.pyplot(fig)        
+        elif probability == "P(X > value)":     
             x2 = np.linspace(value1, norm.ppf(0.9999, meanmu, stsigma), 100)
             y2 = norm.pdf(x=x2, loc=meanmu, scale=stsigma)
             ax.plot(x2, y2, color='tab:blue')
             ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
             ax.plot((value1, value1), (-.02, norm.pdf(value1, loc=meanmu, scale=stsigma)+.1), scaley = False, color='tab:orange')
-        else:
-            x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
-            ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), color='tab:blue')
-            ax.set(xlabel='X', ylabel='Density')
-            title1=('normal(%0.2f, %0.2f)' %(meanmu, stsigma))
-            ax.title.set_text(title1)
-            st.pyplot(fig)        
+        else:     
             x2 = np.linspace(value1, value2, 100)
             y2 = norm.pdf(x=x2, loc=meanmu, scale=stsigma)
             ax.plot(x2, y2, color='tab:blue')
