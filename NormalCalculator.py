@@ -39,8 +39,16 @@ with col1:
     )
 
     check = st.checkbox("Calculate Probability")
+    calculate = st.selectbox(
+        "Calculate",
+        [
+            "no calculation",
+            "Probability given value",
+            "Value given probability"
+        ]
+        )
 
-    if check:
+    if calculate == "Probability given value":
         probability = st.selectbox(
             "Probability",
             [
@@ -72,7 +80,7 @@ with col1:
             )
 
 with col2:
-    if check:
+    if calculate == "Probability given value":
         fig, ax = plt.subplots()
         if probability == "P(X < value)":
             x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
