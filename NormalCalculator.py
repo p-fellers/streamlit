@@ -26,8 +26,8 @@ with col1:
     st.write('Normal Distribution')
     meanmu = st.number_input(
         "Mean",
-        value=0.0,
-        step=0.1,
+        value=0.00,
+        step=0.01,
         key=11
     )
     stsigma = st.number_input(
@@ -59,22 +59,22 @@ with col1:
         if probability == "P(value1 < X < value2)":
             value1 = st.number_input(
                 "value1",
-                value=0.00,
-                step=0.01,
+                value=0.000,
+                step=0.001,
                 key=21
             )
             value2 = st.number_input(
                 "value2",
-                value=0.00,
-                step=0.01,
+                value=0.000,
+                step=0.001,
                 key=22
             )
             
         else:
             value1 = st.number_input(
                 "value",
-                value=0.00,
-                step=0.01,
+                value=0.000,
+                step=0.001,
                 key=23
             )
    
@@ -89,10 +89,10 @@ with col1:
         )
         prob = st.number_input(
                 "prob",
-                min_value=0.00,
-                max_value=1.00,
-                value=0.50,
-                step=0.01,
+                min_value=0.000,
+                max_value=1.000,
+                value=0.500,
+                step=0.001,
                 key = 3.1
         )
 
@@ -102,7 +102,7 @@ with col2:
         x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
         ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), color='tab:blue')
         ax.set(xlabel='X', ylabel='Density')
-        title1=('normal(%0.2f, %0.2f)' %(meanmu, stsigma))
+        title1=('normal(%0.3f, %0.3f)' %(meanmu, stsigma))
         ax.title.set_text(title1)
         plt.ylim(bottom=0)  
         if probability == "P(X < value)":    
@@ -112,7 +112,7 @@ with col2:
             ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
             ax.plot((value1, value1), (-.02, norm.pdf(value1, loc=meanmu, scale=stsigma)), scaley = False, color='tab:orange')
             probcalc = norm.cdf(value1,loc=meanmu, scale=stsigma)
-            text="P(X < %0.2f) = %0.2f" %(value1, probcalc) 
+            text="P(X < %0.3f) = %0.3f" %(value1, probcalc) 
         elif probability == "P(X > value)":     
             x2 = np.linspace(value1, norm.ppf(0.9999, meanmu, stsigma), 100)
             y2 = norm.pdf(x=x2, loc=meanmu, scale=stsigma)
@@ -120,7 +120,7 @@ with col2:
             ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
             ax.plot((value1, value1), (-.02, norm.pdf(value1, loc=meanmu, scale=stsigma)), scaley = False, color='tab:orange')
             probcalc = 1-norm.cdf(value1,loc=meanmu, scale=stsigma)
-            text="P(X > %0.2f) = %0.2f" %(value1, probcalc)
+            text="P(X > %0.3f) = %0.3f" %(value1, probcalc)
         else:     
             x2 = np.linspace(value1, value2, 100)
             y2 = norm.pdf(x=x2, loc=meanmu, scale=stsigma)
@@ -129,13 +129,13 @@ with col2:
             ax.plot((value1, value1), (-.02, norm.pdf(value1, loc=meanmu, scale=stsigma)), scaley = False, color='tab:orange')
             ax.plot((value2, value2), (-.02, norm.pdf(value2, loc=meanmu, scale=stsigma)), scaley = False, color='tab:orange')
             probcalc = norm.cdf(value2,loc=meanmu, scale=stsigma)-norm.cdf(value1,loc=meanmu, scale=stsigma)
-            text="P(%0.2f < X < %0.2f) = %0.2f" %(value1, value2, probcalc)
+            text="P(%0.3f < X < %0.3f) = %0.3f" %(value1, value2, probcalc)
     elif calculate == "Value given probability":
         fig, ax = plt.subplots()
         x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
         ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), color='tab:blue')
         ax.set(xlabel='X', ylabel='Density')
-        title1=('normal(%0.2f, %0.2f)' %(meanmu, stsigma))
+        title1=('normal(%0.3f, %0.3f)' %(meanmu, stsigma))
         plt.ylim(bottom=0) 
         ax.title.set_text(title1)
         if tail == "lower tail":
@@ -145,7 +145,7 @@ with col2:
             ax.plot(x2, y2, color='tab:blue')
             ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
             ax.plot((valresult, valresult), (-.02, norm.pdf(valresult, loc=meanmu, scale=stsigma)), scaley = False, color='tab:orange')
-            text="P(X < %0.2f) = %0.2f" %(valresult, prob)
+            text="P(X < %0.3f) = %0.3f" %(valresult, prob)
         elif tail == "upper tail":
             valresult=norm.ppf((1-prob), meanmu, stsigma)
             x2 = np.linspace(valresult, norm.ppf(0.9999, meanmu, stsigma), 100)
@@ -153,7 +153,7 @@ with col2:
             ax.plot(x2, y2, color='tab:blue')
             ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
             ax.plot((valresult, valresult), (-.02, norm.pdf(valresult, loc=meanmu, scale=stsigma)), scaley = False, color='tab:orange')
-            text="P(X > %0.2f) = %0.2f" %(valresult, prob)
+            text="P(X > %0.3f) = %0.3f" %(valresult, prob)
         else:
             valresult1=norm.ppf((1-prob)/2, meanmu, stsigma)
             valresult2=norm.ppf(1-(1-prob)/2, meanmu, stsigma)
@@ -163,13 +163,13 @@ with col2:
             ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
             ax.plot((valresult1, valresult1), (-.02, norm.pdf(valresult1, loc=meanmu, scale=stsigma)), scaley = False, color='tab:orange')
             ax.plot((valresult2, valresult2), (-.02, norm.pdf(valresult2, loc=meanmu, scale=stsigma)), scaley = False, color='tab:orange')
-            text="P(%0.2f < X < %0.2f) = %0.2f" %(valresult1, valresult2, prob)            
+            text="P(%0.3f < X < %0.3f) = %0.3f" %(valresult1, valresult2, prob)            
     else:
         fig, ax = plt.subplots()
         x = np.linspace(norm.ppf(0.0001, meanmu, stsigma), norm.ppf(0.9999, meanmu, stsigma), 100)
         ax.plot(x, norm.pdf(x=x, loc=meanmu, scale=stsigma), color='tab:blue')
         ax.set(xlabel='X', ylabel='Density')
-        title1=('normal(%0.2f, %0.2f)' %(meanmu, stsigma))
+        title1=('normal(%0.3f, %0.3f)' %(meanmu, stsigma))
         ax.title.set_text(title1)
         plt.ylim(bottom=0) 
         text=""
