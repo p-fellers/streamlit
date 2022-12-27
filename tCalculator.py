@@ -26,7 +26,7 @@ with col1:
     st.write('t Distribution')
     df = st.number_input(
         "Degrees of freedom",
-        minvalue=0,
+        min_value=0,
         step=1,
         value=10,
         key=11
