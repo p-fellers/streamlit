@@ -93,8 +93,8 @@ with col1:
 with col2:
     if calculate == "Probability given value":
         fig, ax = plt.subplots()
-        x = np.linspace(t.ppf(0.0001, df), t.ppf(0.9999, df), 100)
-        ax.plot(x, t.pdf(x=x, df), color='tab:blue')
+        x = np.linspace(t.ppf(0.0001, df=df), t.ppf(0.9999, df=df), 100)
+        ax.plot(x, t.pdf(x=x, df=df), color='tab:blue')
         ax.set(xlabel='X', ylabel='Density')
         title1=('t(%02d)' %df)
         ax.title.set_text(title1)
