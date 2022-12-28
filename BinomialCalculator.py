@@ -119,7 +119,7 @@ with col2:
             probcalc = binom.cdf(int(value1)-1, n=nobs, p=bprob)
             text="P(X < %02d) = %0.3f" %(value1, probcalc) 
         elif probability == "P(X > value)":     
-            x2 = range(int(value1)=1, int(nobs)+1)
+            x2 = range(int(value1)-1, int(nobs)+1)
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
             probcalc = 1-binom.cdf(value1, n=nobs, p=bprob)
             text="P(X > %02d) = %0.3f" %(value1, probcalc)
