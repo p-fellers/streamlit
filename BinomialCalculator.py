@@ -101,18 +101,15 @@ with col1:
 with col2:
     if calculate == "Probability given value":
         fig, ax = plt.subplots()
-        x = np.linspace(binom.ppf(0.0001, n=nobs, p=bprob), binom.ppf(0.9999, n=nobs, p=bprob), 100)
-        ax.plot(x, binom.pmf(k=x, n=nobs, p=bprob), color='tab:blue')
-        ax.set(xlabel='X', ylabel='Density')
+        x = range(0, int(nobs)+1)
+        ax.bar(x, height=binom.pmf(k=x, n=nobs, p=bprob), width=0.75, color='tab:blue')
+        ax.set(xlabel='X', ylabel='Probability')
         title1=("binomial( %02d, %0.2f)" %(nobs, bprob))
         ax.title.set_text(title1)
         plt.ylim(bottom=0)  
         if probability == "P(X < value)":    
-            x2 = np.linspace(binom.ppf(0.0001, n=nobs, p=bprob), value1, 100)
-            y2 = binom.pmf(k=x2, n=nobs, p=bprob)
-            ax.plot(x2, y2, color='tab:blue')
-            ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
-            ax.plot((value1, value1), (-.02, binom.pmf(value1, n=nobs, p=bprob)), scaley = False, color='tab:orange')
+            x2 = range(0, int(value1))
+            ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
             probcalc = binom.cdf(value1, n=nobs, p=bprob)
             text="P(X < %0.3f) = %0.3f" %(value1, probcalc) 
         elif probability == "P(X > value)":     
