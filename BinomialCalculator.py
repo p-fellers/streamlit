@@ -149,7 +149,7 @@ with col2:
             x2 = range(0, int(valresult))
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), color='tab:orange')
             probcalc = binom.cdf(int(valresult)-1, n=nobs, p=bprob)
-            text="Desired Probability: %0.3f <br> P(X $leq; %d) = %0.3f" %(prob, valresult, probcalc)
+            text="Desired Probability: %0.3f <br> P(X &leq; %d) = %0.3f" %(prob, valresult, probcalc)
         elif tail == "upper tail":
             valresult=binom.ppf((1-prob), n=nobs, p=bprob)
             x2 = range(valresult, int(nobs)+1)
