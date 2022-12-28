@@ -138,7 +138,7 @@ with col2:
             text="P(X = %d) = %0.3f" %(value1, probcalc)
     elif calculate == "Value given probability":
         fig, ax = plt.subplots()
-        x = range(0, int(nobs))
+        x = range(0, int(nobs)+1)
         ax.bar(x, height=binom.pmf(k=x, n=nobs, p=bprob), color='tab:blue')
         ax.set(xlabel='X', ylabel='Probability')
         title1=("binomial( %d, %0.2f)" %(nobs, bprob))
