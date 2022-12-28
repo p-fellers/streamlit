@@ -45,7 +45,7 @@ with col1:
         [
             "no calculation",
             "Probability given value",
-            "Value given probability"
+ #           "Value given probability"
         ]
         )
 
@@ -87,23 +87,23 @@ with col1:
                 key=23
             )
    
-    if calculate == "Value given probability":
-        tail = st.selectbox(
-            "Location",
-            [
-                "lower tail",
-                "upper tail",
-                "middle"
-            ]
-        )
-        prob = st.number_input(
-                "Desired Ppobability",
-                min_value=0.000,
-                max_value=1.000,
-                value=0.500,
-                step=0.001,
-                key = 3.1
-        )
+#    if calculate == "Value given probability":
+#        tail = st.selectbox(
+#            "Location",
+#            [
+#                "lower tail",
+#                "upper tail",
+#                "middle"
+#            ]
+#        )
+#        prob = st.number_input(
+#                "Desired Ppobability",
+#                min_value=0.000,
+#                max_value=1.000,
+#                value=0.500,
+#                step=0.001,
+#                key = 3.1
+#        )
 
 with col2:
     if calculate == "Probability given value":
@@ -136,33 +136,33 @@ with col2:
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
             probcalc = binom.pmf(int(value1), n=nobs, p=bprob)
             text="P(X = %d) = %0.3f" %(value1, probcalc)
-    elif calculate == "Value given probability":
-        fig, ax = plt.subplots()
-        x = range(0, int(nobs)+1)
-        ax.bar(x, height=binom.pmf(k=x, n=nobs, p=bprob), color='tab:blue')
-        ax.set(xlabel='X', ylabel='Probability')
-        title1=("binomial( %d, %0.2f)" %(nobs, bprob))
-        plt.ylim(bottom=0) 
-        ax.title.set_text(title1)
-        if tail == "lower tail":
-            valresult=binom.ppf(prob, n=nobs, p=bprob)
-            x2 = range(0, int(valresult)+1)
-            ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), color='tab:orange')
-            probcalc = binom.cdf(int(valresult), n=nobs, p=bprob)
-            text="Desired Probability: %0.3f <br> P(X &leq; %d) = %0.3f" %(prob, valresult, probcalc)
-        elif tail == "upper tail":
-            valresult=binom.ppf((1-prob), n=nobs, p=bprob)
-            x2 = range(valresult, int(nobs)+1)
-            y2 = binom.pmf(k=x2, n=nobs, p=bprob)
-            ax.bar(x2, height=y2, color='tab:orange')
-            text="P(X > %d) = %0.3f" %(valresult, prob)
-        else:
-            valresult1=binom.ppf((1-prob)/2, n=nobs, p=bprob)
-            valresult2=binom.ppf(1-(1-prob)/2, n=nobs, p=bprob)
-            x2 = range(int(valresult1), int(valresult2))
-            y2 = binom.pmf(k=x2, n=nobs, p=bprob)
-            ax.bar(x2, height=y2, color='tab:orange')
-            text="P(%d < X < %d) = %0.3f" %(valresult1, valresult2, prob)            
+#    elif calculate == "Value given probability":
+#        fig, ax = plt.subplots()
+#        x = range(0, int(nobs)+1)
+#        ax.bar(x, height=binom.pmf(k=x, n=nobs, p=bprob), color='tab:blue')
+#        ax.set(xlabel='X', ylabel='Probability')
+#        title1=("binomial( %d, %0.2f)" %(nobs, bprob))
+#        plt.ylim(bottom=0) 
+#        ax.title.set_text(title1)
+#        if tail == "lower tail":
+#            valresult=binom.ppf(prob, n=nobs, p=bprob)
+#            x2 = range(0, int(valresult)+1)
+#            ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), color='tab:orange')
+#            probcalc = binom.cdf(int(valresult), n=nobs, p=bprob)
+#            text="Desired Probability: %0.3f <br> P(X &leq; %d) = %0.3f" %(prob, valresult, probcalc)
+#        elif tail == "upper tail":
+#            valresult=binom.ppf((1-prob), n=nobs, p=bprob)
+#            x2 = range(valresult, int(nobs)+1)
+#            y2 = binom.pmf(k=x2, n=nobs, p=bprob)
+#            ax.bar(x2, height=y2, color='tab:orange')
+#            text="P(X > %d) = %0.3f" %(valresult, prob)
+#        else:
+#            valresult1=binom.ppf((1-prob)/2, n=nobs, p=bprob)
+#            valresult2=binom.ppf(1-(1-prob)/2, n=nobs, p=bprob)
+#            x2 = range(int(valresult1), int(valresult2))
+#            y2 = binom.pmf(k=x2, n=nobs, p=bprob)
+#            ax.bar(x2, height=y2, color='tab:orange')
+#            text="P(%d < X < %d) = %0.3f" %(valresult1, valresult2, prob)            
     else:
         fig, ax = plt.subplots()
         x = range(0, int(nobs)+1)
