@@ -88,7 +88,7 @@ with col1:
             ]
         )
         prob = st.number_input(
-                "prob",
+                "Desired probability",
                 min_value=0.000,
                 max_value=1.000,
                 value=0.500,
