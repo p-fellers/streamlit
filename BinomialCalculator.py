@@ -61,22 +61,28 @@ with col1:
         if probability == "P(value1 < X < value2)":
             value1 = st.number_input(
                 "value1",
-                value=0.000,
-                step=0.001,
+                min_value=0,
+                max_value=int(nobs)+1,
+                step=1,
+                value=0,
                 key=21
             )
             value2 = st.number_input(
                 "value2",
-                value=0.000,
-                step=0.001,
+                min_value=0,
+                max_value=int(nobs)+1,
+                step=1,
+                value=1,
                 key=22
             )
             
         else:
             value1 = st.number_input(
                 "value",
-                value=0.000,
-                step=0.001,
+                min_value=0,
+                max_value=int(nobs)+1,
+                step=1,
+                value=1,
                 key=23
             )
    
@@ -111,18 +117,18 @@ with col2:
             x2 = range(0, int(value1))
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
             probcalc = binom.cdf(value1, n=nobs, p=bprob)
-            text="P(X < %0.3f) = %0.3f" %(value1, probcalc) 
+            text="P(X < %02d) = %0.3f" %(value1, probcalc) 
         elif probability == "P(X > value)":     
             x2 = range(int(value1), int(nobs)+1)
-            ax.bar(x2, height=inom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
+            ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
             probcalc = 1-binom.cdf(value1, n=nobs, p=bprob)
-            text="P(X > %0.3f) = %0.3f" %(value1, probcalc)
+            text="P(X > %02d) = %0.3f" %(value1, probcalc)
         else:     
             x2 = range(int(value1), int(value2))
             y2 = binom.pmf(k=x2, n=nobs, p=bprob)
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
             probcalc = binom.cdf(value2, n=nobs, p=bprob)-binom.cdf(value1, n=nobs, p=bprob)
-            text="P(%0.3f < X < %0.3f) = %0.3f" %(value1, value2, probcalc)
+            text="P(%02d < X < %02d) = %0.3f" %(value1, value2, probcalc)
     elif calculate == "Value given probability":
         fig, ax = plt.subplots()
         x = range(0, int(nobs))
@@ -135,20 +141,20 @@ with col2:
             valresult=binom.ppf(prob, n=nobs, p=bprob)
             x2 = range(0, int(valresult))
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), color='tab:orange')
-            text="P(X < %0.3f) = %0.3f" %(valresult, prob)
+            text="P(X < %02d) = %0.3f" %(valresult, prob)
         elif tail == "upper tail":
             valresult=binom.ppf((1-prob), n=nobs, p=bprob)
             x2 = range(valresult, int(nobs)+1)
             y2 = binom.pmf(k=x2, n=nobs, p=bprob)
             ax.bar(x2, height=y2, color='tab:orange')
-            text="P(X > %0.3f) = %0.3f" %(valresult, prob)
+            text="P(X > %02d) = %0.3f" %(valresult, prob)
         else:
             valresult1=binom.ppf((1-prob)/2, n=nobs, p=bprob)
             valresult2=binom.ppf(1-(1-prob)/2, n=nobs, p=bprob)
             x2 = range(int(valresult1), int(valresult2))
             y2 = binom.pmf(k=x2, n=nobs, p=bprob)
             ax.bar(x2, height=y2, color='tab:orange')
-            text="P(%0.3f < X < %0.3f) = %0.3f" %(valresult1, valresult2, prob)            
+            text="P(%02d < X < %02d) = %0.3f" %(valresult1, valresult2, prob)            
     else:
         fig, ax = plt.subplots()
         x = range(0, int(nobs)+1)
