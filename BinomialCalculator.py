@@ -146,7 +146,7 @@ with col2:
         ax.title.set_text(title1)
         if tail == "lower tail":
             valresult=binom.ppf(prob, n=nobs, p=bprob)
-            x2 = range(0, int(valresult))
+            x2 = range(0, int(valresult)+1)
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), color='tab:orange')
             probcalc = binom.cdf(int(valresult), n=nobs, p=bprob)
             text="Desired Probability: %0.3f <br> P(X &leq; %d) = %0.3f" %(prob, valresult, probcalc)
