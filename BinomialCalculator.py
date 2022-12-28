@@ -70,7 +70,7 @@ with col1:
             )
             value2 = st.number_input(
                 "value2",
-                min_value=value1,
+                min_value=0,
                 max_value=int(nobs),
                 step=1,
                 value=1,
