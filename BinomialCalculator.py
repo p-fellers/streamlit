@@ -128,7 +128,7 @@ with col2:
             y2 = binom.pmf(k=x2, n=nobs, p=bprob)
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
             probcalc = binom.cdf(int(value2)-1, n=nobs, p=bprob)-binom.cdf(value1, n=nobs, p=bprob)
-            text="P(%02d < X < %02d) = %0.3f" %(value1, value2, probcalc)
+            text="P(%d < X < %d) = %0.3f" %(value1, value2, probcalc)
     elif calculate == "Value given probability":
         fig, ax = plt.subplots()
         x = range(0, int(nobs))
