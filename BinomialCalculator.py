@@ -108,7 +108,7 @@ with col1:
 with col2:
     if calculate == "Probability given value":
         if value1 > value2:
-            text("value1 must be less than or equal to value2")
+            text="value1 must be less than or equal to value2"
         else:
             fig, ax = plt.subplots()
             x = range(0, int(nobs)+1)
