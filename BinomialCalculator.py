@@ -63,7 +63,7 @@ with col1:
             value1 = st.number_input(
                 "value1",
                 min_value=0,
-                max_value=int(nobs)+1,
+                max_value=int(nobs),
                 step=1,
                 value=0,
                 key=21
@@ -71,7 +71,7 @@ with col1:
             value2 = st.number_input(
                 "value2",
                 min_value=0,
-                max_value=int(nobs)+1,
+                max_value=int(nobs),
                 step=1,
                 value=1,
                 key=22
@@ -81,7 +81,7 @@ with col1:
             value1 = st.number_input(
                 "value",
                 min_value=0,
-                max_value=int(nobs)+1,
+                max_value=int(nobs),
                 step=1,
                 value=1,
                 key=23
