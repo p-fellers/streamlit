@@ -63,7 +63,7 @@ with col1:
             value1 = st.number_input(
                 "value1",
                 min_value=0,
-                max_value=value2,
+                max_value=int(nobs),
                 step=1,
                 value=0,
                 key=21
