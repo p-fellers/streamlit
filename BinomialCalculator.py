@@ -37,7 +37,7 @@ with col1:
         max_value=1.00,
         value=0.50,
         step=0.01,
-        ey=12
+        key=12
     )
 
     calculate = st.selectbox(
