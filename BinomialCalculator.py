@@ -1,0 +1,180 @@
+import streamlit as st
+import pandas as pd
+import seaborn as sns
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import binom
+from scipy.stats import norm
+from scipy.stats import t
+
+hide = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    body {overflow: hidden;}
+    div.block-container {padding-top:1rem;}
+    div.block-container {padding-bottom:1rem;}
+    </style>
+    """
+
+st.markdown(hide, unsafe_allow_html=True)
+
+col1, col2 = st.columns([2,3])
+
+with col1:
+    st.write('Binomial Distribution')
+    nobs = st.number_input(
+        "n",
+        min_value=1,
+        step=1,
+        value=1,
+        key=11
+    )
+    bprob = st.number_input(
+        label="Probability",
+        min_value=0.00,
+        max_value=1.00,
+        value=0.50,
+        step=0.01,
+        ey=12
+    )
+
+    calculate = st.selectbox(
+        "Calculate",
+        [
+            "no calculation",
+            "Probability given value",
+            "Value given probability"
+        ]
+        )
+
+    if calculate == "Probability given value":
+        probability = st.selectbox(
+            "Probability",
+            [
+                "P(X < value)",
+                "P(X > value)",
+                "P(value1 < X < value2)"
+            ]
+        )
+        if probability == "P(value1 < X < value2)":
+            value1 = st.number_input(
+                "value1",
+                value=0.000,
+                step=0.001,
+                key=21
+            )
+            value2 = st.number_input(
+                "value2",
+                value=0.000,
+                step=0.001,
+                key=22
+            )
+            
+        else:
+            value1 = st.number_input(
+                "value",
+                value=0.000,
+                step=0.001,
+                key=23
+            )
+   
+    if calculate == "Value given probability":
+        tail = st.selectbox(
+            "Location",
+            [
+                "lower tail",
+                "upper tail",
+                "middle"
+            ]
+        )
+        prob = st.number_input(
+                "prob",
+                min_value=0.000,
+                max_value=1.000,
+                value=0.500,
+                step=0.001,
+                key = 3.1
+        )
+
+with col2:
+    if calculate == "Probability given value":
+        fig, ax = plt.subplots()
+        x = np.linspace(binom.ppf(0.0001, n=nobs, p=bprob), binom.ppf(0.9999, n=nobs, p=bprob), 100)
+        ax.plot(x, binom.pdf(k=x, n=nobs, p=bprob), color='tab:blue')
+        ax.set(xlabel='X', ylabel='Density')
+#        title1=('t(%02d)' %df)
+        ax.title.set_text(title1)
+        plt.ylim(bottom=0)  
+        if probability == "P(X < value)":    
+            x2 = np.linspace(binom.ppf(0.0001, n=nobs, p=bprob), value1, 100)
+            y2 = binom.pdf(k=x2, n=nobs, p=bprob)
+            ax.plot(x2, y2, color='tab:blue')
+            ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
+            ax.plot((value1, value1), (-.02, binom.pdf(value1, n=nobs, p=bprob)), scaley = False, color='tab:orange')
+            probcalc = binom.cdf(value1, n=nobs, p=bprob)
+            text="P(X < %0.3f) = %0.3f" %(value1, probcalc) 
+        elif probability == "P(X > value)":     
+            x2 = np.linspace(value1, binom.ppf(0.9999, n=nobs, p=bprob), 100)
+            y2 = binom.pdf(k=x2, n=nobs, p=bprob)
+            ax.plot(x2, y2, color='tab:blue')
+            ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
+            ax.plot((value1, value1), (-.02, binom.pdf(value1, n=nobs, p=bprob)), scaley = False, color='tab:orange')
+            probcalc = 1-binom.cdf(value1, n=nobs, p=bprob)
+            text="P(X > %0.3f) = %0.3f" %(value1, probcalc)
+        else:     
+            x2 = np.linspace(value1, value2, 100)
+            y2 = binom.pdf(k=x2, n=nobs, p=bprob)
+            ax.plot(x2, y2, color='tab:blue')
+            ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
+            ax.plot((value1, value1), (-.02, binom.pdf(value1, n=nobs, p=bprob)), scaley = False, color='tab:orange')
+            ax.plot((value2, value2), (-.02, binom.pdf(value2, n=nobs, p=bprob)), scaley = False, color='tab:orange')
+            probcalc = binom.cdf(value2, n=nobs, p=bprob)-binom.cdf(value1, n=nobs, p=bprob)
+            text="P(%0.3f < X < %0.3f) = %0.3f" %(value1, value2, probcalc)
+    elif calculate == "Value given probability":
+        fig, ax = plt.subplots()
+        x = np.linspace(binom.ppf(0.0001, n=nobs, p=bprob), binom.ppf(0.9999, n=nobs, p=bprob), 100)
+        ax.plot(x, binom.pdf(k=x, n=nobs, p=bprob), color='tab:blue')
+        ax.set(xlabel='X', ylabel='Density')
+#        title1=('t(%02d)' %df)
+        plt.ylim(bottom=0) 
+        ax.title.set_text(title1)
+        if tail == "lower tail":
+            valresult=binom.ppf(prob, n=nobs, p=bprob)
+            x2 = np.linspace(binom.ppf(0.0001, n=nobs, p=bprob), valresult, 100)
+            y2 = binom.pdf(k=x2, n=nobs, p=bprob)
+            ax.plot(x2, y2, color='tab:blue')
+            ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
+            ax.plot((valresult, valresult), (-.02, binom.pdf(valresult, n=nobs, p=bprob)), scaley = False, color='tab:orange')
+            text="P(X < %0.3f) = %0.3f" %(valresult, prob)
+        elif tail == "upper tail":
+            valresult=binom.ppf((1-prob), n=nobs, p=bprob)
+            x2 = np.linspace(valresult, binom.ppf(0.9999, n=nobs, p=bprob), 100)
+            y2 = binom.pdf(k=x2, n=nobs, p=bprob)
+            ax.plot(x2, y2, color='tab:blue')
+            ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
+            ax.plot((valresult, valresult), (-.02, binom.pdf(valresult, n=nobs, p=bprob)), scaley = False, color='tab:orange')
+            text="P(X > %0.3f) = %0.3f" %(valresult, prob)
+        else:
+            valresult1=binom.ppf((1-prob)/2, n=nobs, p=bprob)
+            valresult2=binom.ppf(1-(1-prob)/2, n=nobs, p=bprob)
+            x2 = np.linspace(valresult1, valresult2, 100)
+            y2 = binom.pdf(k=x2, n=nobs, p=bprob)
+            ax.plot(x2, y2, color='tab:blue')
+            ax.fill_between(x2, 0, y2, color='tab:orange', alpha=0.6)
+            ax.plot((valresult1, valresult1), (-.02, binom.pdf(valresult1, n=nobs, p=bprob)), scaley = False, color='tab:orange')
+            ax.plot((valresult2, valresult2), (-.02, binom.pdf(valresult2, n=nobs, p=bprob)), scaley = False, color='tab:orange')
+            text="P(%0.3f < X < %0.3f) = %0.3f" %(valresult1, valresult2, prob)            
+    else:
+        fig, ax = plt.subplots()
+        x = np.linspace(binom.ppf(0.0001, n=nobs, p=bprob), binom.ppf(0.9999, n=nobs, p=bprob), 100)
+        ax.plot(x, binom.pdf(k=x, n=nobs, p=bprob), color='tab:blue')
+        ax.set(xlabel='X', ylabel='Density')
+#        title1=('t(%02d)' %df)
+        ax.title.set_text(title1)
+        plt.ylim(bottom=0) 
+        text=""
+    st.pyplot(fig)
+    st.markdown(f"""<div style='text-align: center'>{text}</h1>""", unsafe_allow_html=True)
+
