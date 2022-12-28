@@ -53,6 +53,7 @@ with col1:
         probability = st.selectbox(
             "Probability",
             [
+                "P(X = value)",
                 "P(X < value)",
                 "P(X > value)",
                 "P(value1 < X < value2)"
@@ -123,12 +124,18 @@ with col2:
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
             probcalc = 1-binom.cdf(value1, n=nobs, p=bprob)
             text="P(X > %02d) = %0.3f" %(value1, probcalc)
-        else:     
+        elif probability == "P(value1 < X < value2)":     
             x2 = range(int(value1)+1, int(value2))
             y2 = binom.pmf(k=x2, n=nobs, p=bprob)
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
             probcalc = binom.cdf(int(value2)-1, n=nobs, p=bprob)-binom.cdf(value1, n=nobs, p=bprob)
             text="P(%d < X < %d) = %0.3f" %(value1, value2, probcalc)
+        else:
+            x2 = int(value1)
+            y2 = binom.pmf(k=x2, n=nobs, p=bprob)
+            ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
+            probcalc = binom.pmf(int(value1), n=nobs, p=bprob)
+            text="P(X = %d) = %0.3f" %(value1, probcalc)
     elif calculate == "Value given probability":
         fig, ax = plt.subplots()
         x = range(0, int(nobs))
