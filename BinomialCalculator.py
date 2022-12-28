@@ -108,6 +108,13 @@ with col1:
 with col2:
     if calculate == "Probability given value":
         if value1 > value2:
+            fig, ax = plt.subplots()
+            x = range(0, int(nobs)+1)
+            ax.bar(x, height=binom.pmf(k=x, n=nobs, p=bprob), width=0.75, color='tab:blue')
+            ax.set(xlabel='X', ylabel='Probability')
+            title1=("binomial( %d, %0.2f)" %(nobs, bprob))
+            ax.title.set_text(title1)
+            plt.ylim(bottom=0)  
             text="value1 must be less than or equal to value2"
         else:
             fig, ax = plt.subplots()
