@@ -139,7 +139,7 @@ with col2:
                 title1=("binomial( %d, %0.2f)" %(nobs, bprob))
                 ax.title.set_text(title1)
                 plt.ylim(bottom=0)  
-                text="value1 must be less than or equal to value2"               
+                text="value1 must be less than value2"               
         else:
             x2 = int(value1)
             y2 = binom.pmf(k=x2, n=nobs, p=bprob)
