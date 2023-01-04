@@ -54,12 +54,12 @@ with col1:
             "Probability",
             [
                 "P(X = value)",
-                "P(X $&leq$ value)",
-                "P(X > value)",
-                "P(value1 < X < value2)"
+                "P(X < = value)",
+                "P(X > = value)",
+                "P(value1 < = X < = value2)"
             ]
         )
-        if probability == "P(value1 < X < value2)":
+        if probability == "P(value1 < = X < = value2)":
             value1 = st.number_input(
                 "value1",
                 min_value=0,
@@ -114,11 +114,11 @@ with col2:
         title1=("binomial( %d, %0.2f)" %(nobs, bprob))
         ax.title.set_text(title1)
         plt.ylim(bottom=0)  
-        if probability == "P(X $&leq$ value)":    
-            x2 = range(0, int(value1))
+        if probability == "P(X < = value)":    
+            x2 = range(0, int(value1)+1)
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
-            probcalc = binom.cdf(int(value1)-1, n=nobs, p=bprob)
-            text="P(X < %d) = %0.3f" %(value1, probcalc) 
+            probcalc = binom.cdf(int(value1), n=nobs, p=bprob)
+            text="P(X < = %d) = %0.3f" %(value1, probcalc) 
         elif probability == "P(X > value)":     
             x2 = range(int(value1)+1, int(nobs)+1)
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
