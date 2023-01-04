@@ -32,7 +32,7 @@ with col1:
         key=11
     )
     bprob = st.number_input(
-        label="Probability",
+        label="Probability of success",
         min_value=0.00,
         max_value=1.00,
         value=0.50,
