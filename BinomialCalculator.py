@@ -118,19 +118,19 @@ with col2:
             x2 = range(0, int(value1)+1)
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
             probcalc = binom.cdf(int(value1), n=nobs, p=bprob)
-            text="P(X &leq %d) = %0.3f" %(value1, probcalc) 
+            text="P(X &le; %d) = %0.3f" %(value1, probcalc) 
         elif probability == "P(X > = value)":     
             x2 = range(int(value1), int(nobs)+1)
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
             probcalc = 1-binom.cdf(int(value1)-1, n=nobs, p=bprob)
-            text="P(X &geq %d) = %0.3f" %(value1, probcalc)
+            text="P(X &ge; %d) = %0.3f" %(value1, probcalc)
         elif probability == "P(value1 < = X < = value2)": 
             if value1 < value2:    
                 x2 = range(int(value1), int(value2)+1)
                 y2 = binom.pmf(k=x2, n=nobs, p=bprob)
                 ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
                 probcalc = binom.cdf(int(value2), n=nobs, p=bprob)-binom.cdf(int(value1)-1, n=nobs, p=bprob)
-                text="P(%d &leq X &leq %d) = %0.3f" %(value1, value2, probcalc)
+                text="P(%d &le; X &le; %d) = %0.3f" %(value1, value2, probcalc)
             else:
                 fig, ax = plt.subplots()
                 x = range(0, int(nobs)+1)
