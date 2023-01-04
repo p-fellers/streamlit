@@ -54,7 +54,7 @@ with col1:
             "Probability",
             [
                 "P(X = value)",
-                "P(X < value)",
+                "P(X $&leq$ value)",
                 "P(X > value)",
                 "P(value1 < X < value2)"
             ]
@@ -114,7 +114,7 @@ with col2:
         title1=("binomial( %d, %0.2f)" %(nobs, bprob))
         ax.title.set_text(title1)
         plt.ylim(bottom=0)  
-        if probability == "P(X < value)":    
+        if probability == "P(X $&leq$ value)":    
             x2 = range(0, int(value1))
             ax.bar(x2, height=binom.pmf(k=x2, n=nobs, p=bprob), width=0.75, color='tab:orange')
             probcalc = binom.cdf(int(value1)-1, n=nobs, p=bprob)
