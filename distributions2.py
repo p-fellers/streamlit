@@ -44,7 +44,7 @@ with col1:
         df1 = st.number_input(
             "Degrees of freedom 1",
             min_value=1,
-            value=1.0,
+            value=1,
             step=1,
             key=12
         )
