@@ -72,7 +72,7 @@ with col1:
                 "Degrees of freedom",
                 min_value=1,
                 step=1,
-                value=1,
+                value=2,
                 key=21
             )
         elif distribution == "F":
@@ -113,11 +113,11 @@ with col2:
             title2=("chi-square( %d )" %(df2))
             ax.legend([title1, title2])
         elif distribution == "F":
-            x = np.linspace(f.ppf(0.0001, df1, df2), f.ppf(0.99, df1, df2), 100)
+            x = np.linspace(f.ppf(0.001, df1, df2), f.ppf(0.99, df1, df2), 100)
             ax.plot(x, f.pdf(x=x, dfn=df1, dfd=df2), alpha=0.5)
             ax.set(xlabel='X', ylabel='Density')
             title1=('F(%d, %d)' %(df1, df2))
-            x2 = np.linspace(f.ppf(0.0001, df12, df22), f.ppf(0.99, df12, df22), 100)
+            x2 = np.linspace(f.ppf(0.001, df12, df22), f.ppf(0.99, df12, df22), 100)
             ax.plot(x2, f.pdf(x=x2, dfn=df12, dfd=df22), color='darkorange', alpha=0.5)
             ax.set(xlabel='X', ylabel='Density')
             title2=('F(%d, %d)' %(df12, df22))
@@ -141,7 +141,7 @@ with col2:
             title1=("chi-square( %d )" %(df))
             ax.title.set_text(title1)
         elif distribution == "F":
-            x = np.linspace(f.ppf(0.0001, df1, df2), f.ppf(0.99, df1, df2), 100)
+            x = np.linspace(f.ppf(0.001, df1, df2), f.ppf(0.99, df1, df2), 100)
             ax.plot(x, f.pdf(x=x, dfn=df1, dfd=df2), alpha=0.5)
             ax.set(xlabel='X', ylabel='Density')
             title1=('F(%d, %d)' %(df1, df2))
