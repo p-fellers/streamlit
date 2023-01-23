@@ -124,7 +124,7 @@ with col2:
             ax.legend([title1, title2])
         else:
             x = np.linspace(erlang.ppf(0.0001, a=shape), erlang.ppf(0.9999, a=shape), 100)
-            ax.plot(x, erlang.pdf(x=x, scale=scale), alpha=0.5)
+            ax.plot(x, erlang.pdf(x=x, a=shape), alpha=0.5)
             ax.set(xlabel='X', ylabel='Density')
             title1=('Erlang(%d)' %shape)
             x2 = np.linspace(erlang.ppf(0.0001, a=shape2), erlang.ppf(0.9999, a=shape2), 100)
