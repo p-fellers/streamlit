@@ -23,7 +23,7 @@ st.markdown(hide, unsafe_allow_html=True)
 col1, col2 = st.columns([2,3])
 
 with col1:
-    distribution  =st.selectbox(
+    distribution = st.selectbox(
         "Distribution",
         [
             "chi-square",
@@ -37,7 +37,7 @@ with col1:
             "Degrees of freedom",
             min_value=1,
             step=1,
-            value=1,
+            value=2,
             key=11
         )
     elif distribution == "F":
@@ -103,31 +103,31 @@ with col2:
     if check:
         fig, ax = plt.subplots()
         if distribution == "chi-square":
-            x = np.linspace(chi2.ppf(0.0001, df), chi2.ppf(0.999, df))
+            x = np.linspace(chi2.ppf(0.0001, df), chi2.ppf(0.99, df))
             ax.plot(x, chi2.pdf(x=x, df=df), alpha=0.5)
             ax.set(xlabel='X', ylabel="Density")
             title1=("chi-square( %d )" %(df))
-            x2 = np.linspace(chi2.ppf(0.0001, df2), chi2.ppf(0.999, df2))
+            x2 = np.linspace(chi2.ppf(0.0001, df2), chi2.ppf(0.99, df2))
             ax.plot(x2, chi2.pdf(x=x2, df=df2), color='darkorange', alpha=0.5)
             ax.set(xlabel='X', ylabel="Density")
             title2=("chi-square( %d )" %(df2))
             ax.legend([title1, title2])
         elif distribution == "F":
-            x = np.linspace(f.ppf(0.0001, df1, df2), f.ppf(0.9999, df1, df2), 100)
+            x = np.linspace(f.ppf(0.0001, df1, df2), f.ppf(0.99, df1, df2), 100)
             ax.plot(x, f.pdf(x=x, dfn=df1, dfd=df2), alpha=0.5)
             ax.set(xlabel='X', ylabel='Density')
             title1=('F(%d, %d)' %(df1, df2))
-            x2 = np.linspace(f.ppf(0.0001, df12, df22), f.ppf(0.9999, df12, df22), 100)
+            x2 = np.linspace(f.ppf(0.0001, df12, df22), f.ppf(0.99, df12, df22), 100)
             ax.plot(x2, f.pdf(x=x2, dfn=df12, dfd=df22), color='darkorange', alpha=0.5)
             ax.set(xlabel='X', ylabel='Density')
             title2=('F(%d, %d)' %(df12, df22))
             ax.legend([title1, title2])
         else:
-            x = np.linspace(erlang.ppf(0.0001, a=shape), erlang.ppf(0.9999, a=shape), 100)
+            x = np.linspace(erlang.ppf(0.0001, a=shape), erlang.ppf(0.99, a=shape), 100)
             ax.plot(x, erlang.pdf(x=x, a=shape), alpha=0.5)
             ax.set(xlabel='X', ylabel='Density')
             title1=('Erlang(%d)' %shape)
-            x2 = np.linspace(erlang.ppf(0.0001, a=shape2), erlang.ppf(0.9999, a=shape2), 100)
+            x2 = np.linspace(erlang.ppf(0.0001, a=shape2), erlang.ppf(0.99, a=shape2), 100)
             ax.plot(x2, erlang.pdf(x=x2, a=shape2), color='darkorange', alpha=0.5)
             ax.set(xlabel='X', ylabel='Density')
             title2=('Erlang(%d)' %shape2)
@@ -135,19 +135,19 @@ with col2:
     else:
         fig, ax = plt.subplots()
         if distribution == "chi-square":
-            x = np.linspace(chi2.ppf(0.0001, df), chi2.ppf(0.999, df))
+            x = np.linspace(chi2.ppf(0.0001, df), chi2.ppf(0.99, df))
             ax.plot(x, chi2.pdf(x=x, df=df), alpha=0.5)
             ax.set(xlabel='X', ylabel="Density")
             title1=("chi-square( %d )" %(df))
             ax.title.set_text(title1)
         elif distribution == "F":
-            x = np.linspace(f.ppf(0.0001, df1, df2), f.ppf(0.9999, df1, df2), 100)
+            x = np.linspace(f.ppf(0.0001, df1, df2), f.ppf(0.99, df1, df2), 100)
             ax.plot(x, f.pdf(x=x, dfn=df1, dfd=df2), alpha=0.5)
             ax.set(xlabel='X', ylabel='Density')
             title1=('F(%d, %d)' %(df1, df2))
             ax.title.set_text(title1)
         else:
-            x = np.linspace(erlang.ppf(0.0001, a=shape), erlang.ppf(0.9999, a=shape), 100)
+            x = np.linspace(erlang.ppf(0.0001, a=shape), erlang.ppf(0.99, a=shape), 100)
             ax.plot(x, erlang.pdf(x=x, a=shape), alpha=0.5)
             ax.set(xlabel='X', ylabel='Density')
             title1=('Erlang(%d)' %shape)
