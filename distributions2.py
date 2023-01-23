@@ -130,7 +130,7 @@ with col2:
             x2 = np.linspace(erlang.ppf(0.0001, a=shape2), erlang.ppf(0.9999, a=shape2), 100)
             ax.plot(x2, erlang.pdf(x=x2, a=shape2), color='darkorange', alpha=0.5)
             ax.set(xlabel='X', ylabel='Density')
-            title2=('Erlang(%d)' %sshape2)
+            title2=('Erlang(%d)' %shape2)
             ax.legend([title1,title2])
     else:
         fig, ax = plt.subplots()
