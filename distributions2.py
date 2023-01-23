@@ -104,11 +104,11 @@ with col2:
         fig, ax = plt.subplots()
         if distribution == "chi-square":
             x = np.linspace(chi2.ppf(0.0001, df), chi2.ppf(0.999, df))
-            ax.plot(x, height=chi2.pdf(x=x, df=df), alpha=0.5)
+            ax.plot(x, chi2.pdf(x=x, df=df), alpha=0.5)
             ax.set(xlabel='X', ylabel="Density")
             title1=("chi-square( %d )" %(df))
             x2 = np.linspace(chi2.ppf(0.0001, df2), chi2.ppf(0.999, df2))
-            ax.plot(x2, height=chi2.pdf(x=x2, df=df2), color='darkorange', alpha=0.5)
+            ax.plot(x2, chi2.pdf(x=x2, df=df2), color='darkorange', alpha=0.5)
             ax.set(xlabel='X', ylabel="Density")
             title2=("chi-square( %d )" %(df2))
             ax.legend([title1, title2])
@@ -136,7 +136,7 @@ with col2:
         fig, ax = plt.subplots()
         if distribution == "chi-square":
             x = np.linspace(chi2.ppf(0.0001, df), chi2.ppf(0.999, df))
-            ax.plot(x, height=chi2.pdf(x=x, df=df), alpha=0.5)
+            ax.plot(x, chi2.pdf(x=x, df=df), alpha=0.5)
             ax.set(xlabel='X', ylabel="Density")
             title1=("chi-square( %d )" %(df))
             ax.title.set_text(title1)
