@@ -123,14 +123,14 @@ with col2:
             title2=('F(%d, %d)' %(df12, df22))
             ax.legend([title1, title2])
         else:
-            x = np.linspace(erlang.ppf(0.0001, scale=scale), erlang.ppf(0.9999, scale=scale), 100)
+            x = np.linspace(erlang.ppf(0.0001, a=shape), erlang.ppf(0.9999, a=shape), 100)
             ax.plot(x, erlang.pdf(x=x, scale=scale), alpha=0.5)
             ax.set(xlabel='X', ylabel='Density')
-            title1=('Erlang(%d)' %scale)
-            x2 = np.linspace(erlang.ppf(0.0001, scale=scale2), erlang.ppf(0.9999, scale=scale2), 100)
-            ax.plot(x2, erlang.pdf(x=x2, scale=scale2), color='darkorange', alpha=0.5)
+            title1=('Erlang(%d)' %shape)
+            x2 = np.linspace(erlang.ppf(0.0001, a=shape2), erlang.ppf(0.9999, a=shape2), 100)
+            ax.plot(x2, erlang.pdf(x=x2, a=shape2), color='darkorange', alpha=0.5)
             ax.set(xlabel='X', ylabel='Density')
-            title2=('Erlang(%d)' %scale2)
+            title2=('Erlang(%d)' %sshape2)
             ax.legend([title1,title2])
     else:
         fig, ax = plt.subplots()
@@ -147,10 +147,10 @@ with col2:
             title1=('F(%d, %d)' %(df1, df2))
             ax.title.set_text(title1)
         else:
-            x = np.linspace(erlang.ppf(0.0001, scale=scale), erlang.ppf(0.9999, scale=scale), 100)
-            ax.plot(x, erlang.pdf(x=x, scale=scale), alpha=0.5)
+            x = np.linspace(erlang.ppf(0.0001, a=shape), erlang.ppf(0.9999, a=shape), 100)
+            ax.plot(x, erlang.pdf(x=x, a=shape), alpha=0.5)
             ax.set(xlabel='X', ylabel='Density')
-            title1=('Erlang(%d)' %scale)
+            title1=('Erlang(%d)' %shape)
             ax.title.set_text(title1)
 
     st.pyplot(fig)
