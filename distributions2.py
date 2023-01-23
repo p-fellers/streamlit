@@ -75,7 +75,7 @@ with col1:
                 value=1,
                 key=21
             )
-        elif distribution2 == "F":
+        elif distribution == "F":
             df12 = st.number_input(
                 "Degrees of freedom 1",
                 min_value=1,
