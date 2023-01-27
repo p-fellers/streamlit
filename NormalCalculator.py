@@ -182,8 +182,7 @@ with col2:
         stdev1=stsigma
         alttext1= "Probability distribution curve of a %s distribution. The distribution \
         is unomodal, symmetric, and bell-shaped with a mean of %0.2f and a standard deviation \
-        of %0.2f."
-        %(title1, mean1, stdev1)
+        of %0.2f." %(title1, mean1, stdev1)
 
         if calculate == "Probability given value":
             alttext2 = "The calculated probability is %s." %(text)
