@@ -186,7 +186,19 @@ with col2:
         is unomodal, symmetric, and bell-shaped with a mean of %0.2f and a standard deviation \
         of %0.2f. The 0.001 quantile is %0.2f and the 0.999 quantile is %0.2f."\
         %(title1, mean1, stdev1, lower1, upper1)
+
+        if calculate == "Probability given value":
+            alttest2 = "The calculated probability, %s is %0.3f" %(probability, prob)
+        elif calculate == "Value given probability":
+            if tail == "lower tail":
+                alttext2 = "The value such that P( X < value) = %0.3f is %3f" %(prob, valresult)
+            elif tail == "upper tail":
+                alttext2 = "The value such that P( X > value) = %0.3f is %3f" %(prob, valresult)
+            else:
+                alttext2 = "The middle %0.3f of the distribution lies between %0.3f and %0.3f." %(prob, valresult1, valresult2)
         st.write(alttext1)
+        st.write(alttext2)
+
 
  
 
