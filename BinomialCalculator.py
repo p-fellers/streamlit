@@ -185,3 +185,17 @@ with col2:
     st.pyplot(fig)
     st.markdown(f"""<div style='text-align: center'>{text}</h1>""", unsafe_allow_html=True)
 
+    check2 = st.checkbox("Show description")
+    if check2:
+        mean1=nobs*bprob
+        stdev1=(nobs*(bprob)*(1-bprob))**0.5
+        alttext1= "Probability distribution graph of a %s distribution. The distribution \
+        has a mean of %0.2f and a standard deviation of %0.2f" %(title1, mean1, stdev1)
+
+        if calculate == "Probability given value":
+            alttext2 = "The calculated probability is %s." %(text)
+        else:
+            alttext2=""
+        st.write(alttext1)
+        st.write(alttext2)
+
