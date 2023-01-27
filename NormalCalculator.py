@@ -188,7 +188,7 @@ with col2:
         %(title1, mean1, stdev1, lower1, upper1)
 
         if calculate == "Probability given value":
-            alttest2 = "The calculated probability, %s is %0.3f" %(probability, probcalc)
+            alttext2 = "The calculated probability, %s is %0.3f" %(probability, probcalc)
         elif calculate == "Value given probability":
             if tail == "lower tail":
                 alttext2 = "The value such that P( X < value) = %0.3f is %0.3f, %s." %(prob, valresult, text)
