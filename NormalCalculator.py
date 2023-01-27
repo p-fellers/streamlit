@@ -176,3 +176,17 @@ with col2:
     st.pyplot(fig)
     st.markdown(f"""<div style='text-align: center'>{text}</h1>""", unsafe_allow_html=True)
 
+    check2 = st.checkbox("Show description")
+    if check2:
+        mean1=meanmu
+        stdev1=stsigma
+        lower1=norm.ppf(0.001, meanmu, stsigma)
+        upper1=norm.ppf(0.999, meanmu, stsigma)
+        alttext1= "Probability distribution curve of a %s distribution. The distribution \
+        is unomodal, symmetric, and bell-shaped with a mean of %0.2f and a standard deviation \
+        of %0.2f. The 0.001 quantile is %0.2f and the 0.999 quantile is %0.2f."\
+        %(title1, mean1, stdev1, lower1, upper1)
+        st.write(alttext1)
+
+ 
+
