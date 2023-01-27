@@ -196,6 +196,8 @@ with col2:
                 alttext2 = "The value such that P( X > value) = %0.3f is %0.3f, %s." %(prob, valresult, text)
             else:
                 alttext2 = "The middle %0.3f of the distribution lies between %0.3f and %0.3f, %s." %(prob, valresult1, valresult2, text)
+        else:
+            alttext2=""
         st.write(alttext1)
         st.write(alttext2)
 
