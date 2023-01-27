@@ -172,7 +172,7 @@ with col2:
 
     check2 = st.checkbox("Show description")
     if check2:
-        mean1=meanmu
+        mean1=0
         stdev1=(df/(df-2))**0.5
         alttext1= "Probability distribution curve of a %s distribution. The distribution \
         is unomodal, symmetric, and bell-shaped with a mean of %0.2f and a standard deviation \
